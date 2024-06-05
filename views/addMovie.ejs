@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Movie</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .bg-custom {
+      background-color: #1a202c;
+    }
+  </style>
+</head>
+<body class="bg-custom text-white">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-6 bg-black">
+    <h1 class="text-2xl font-bold text-red-600">Wired</h1>
+    <nav>
+      <a href="/" class="px-3 text-lg hover:text-red-600">Home</a>
+      <a href="#" class="px-3 text-lg hover:text-red-600">Movies</a>
+      <a href="#" class="px-3 text-lg hover:text-red-600">TV</a>
+      <a href="#" class="px-3 text-lg hover:text-red-600">Favourites</a>
+    </nav>
+    <div>
+      <input type="text" placeholder="Search" class="p-2 rounded bg-gray-800 focus:outline-none">
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6">
+    <section class="max-w-2xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+      <h2 class="text-3xl font-bold mb-6">Add New Movie</h2>
+      <form action="/addmovie" method="post" enctype="multipart/form-data">
+        <!-- Movie Title -->
+        <div class="mb-4">
+          <label for="title" class="block text-lg font-semibold mb-2">Movie Title</label>
+          <input type="text" id="title" name="name" class="w-full p-2 rounded bg-gray-700 focus:outline-none" required>
+        </div>
+        <!-- Description -->
+        <div class="mb-4">
+          <label for="description" class="block text-lg font-semibold mb-2">Description</label>
+          <textarea id="description" name="description" class="w-full p-2 rounded bg-gray-700 focus:outline-none" rows="4" required></textarea>
+        </div>
+     
+        <!-- Duration -->
+        <div class="mb-4">
+          <label for="duration" class="block text-lg font-semibold mb-2">Duration (in minutes)</label>
+          <input type="number" id="duration" name="duration" class="w-full p-2 rounded bg-gray-700 focus:outline-none" required>
+        </div>
+
+           <!-- Movie Rating -->
+           <div class="mb-4">
+            <label for="movieRating" class="block text-sm font-medium text-gray-300">Movie Rating</label>
+            <div class="mt-2">
+                <select id="country" name="rating" autocomplete="country-name"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <option selected>Select Rating</option>
+                    <option value="⭐">⭐</option>
+                    <option value="⭐⭐">⭐⭐</option>
+                    <option value="⭐⭐⭐">⭐⭐⭐</option>
+                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
+        </div>
+      
+        <!-- Movie Poster -->
+        <div class="mb-4">
+          <label for="poster" class="block text-lg font-semibold mb-2">Movie Poster</label>
+          <input type="file" id="poster" name="image" class="w-full p-2 rounded bg-gray-700 focus:outline-none" required>
+        </div>
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="px-4 py-2 bg-red-600 rounded hover:bg-red-700">Add Movie</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

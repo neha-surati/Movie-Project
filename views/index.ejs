@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Streaming UI</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .bg-custom {
+      background-color: #1a202c;
+    }
+    .bg-card {
+      background-color: #2d3748;
+    }
+    .movie-img {
+      width: 100%;
+      height: 300px; /* Ensures all images have the same height */
+      object-fit: cover;
+    }
+    .featured-movie-img {
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+    }
+    .button-size {
+      min-width: 120px;
+    }
+  </style>
+</head>
+<body class="bg-custom text-white">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-6 bg-black">
+    <h1 class="text-2xl font-bold text-red-600">Wired</h1>
+    <nav class="flex items-center">
+      <a href="#" class="px-3 text-lg hover:text-red-600">Home</a>
+      <a href="#" class="px-3 text-lg hover:text-red-600">Movies</a>
+      <a href="#" class="px-3 text-lg hover:text-red-600">TV</a>
+      <a href="#" class="px-3 text-lg hover:text-red-600">Favourites</a>
+      <a href="add_movie" class="px-3 text-lg hover:text-red-600">Add Movie</a>
+    </nav>
+    <div>
+      <input type="text" placeholder="Search" class="p-2 rounded bg-gray-800 focus:outline-none">
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6">
+    <!-- Featured Movie -->
+    <section class="mb-10">
+      <% movieData.map((movie) => { %>
+      <h2 class="text-4xl font-bold mb-4"><%= movie.name %></h2>
+      <div class="flex flex-col md:flex-row">
+        <img src="<%= movie.image %>" alt="<%= movie.name %>" class="rounded-lg shadow-lg mr-6 featured-movie-img mb-4 md:mb-0">
+        <div>
+          <p class="mb-4"><%= movie.description %></p>
+          <p class="text-gray-400 mb-4"><%= movie.duration  %> Min</p>
+          <div class="flex items-center mb-4">
+            <span class="text-yellow-400 mr-2"><%= movie.rating %></span>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <a href="/playmovie?id=<%= movie.id %>" class="px-4 py-2 bg-green-600 rounded button-size text-center">Play Now</a>
+            <a href="/watchmovie?id=<%= movie.id %>" class="px-4 py-2 bg-yellow-600 rounded button-size text-center">Watch</a>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <a href="/deletemovie?id=<%= movie.id %>" class="px-4 py-2 bg-red-600 rounded button-size text-center">Delete</a>
+            <a href="/editmovie?id=<%= movie.id %>" class="px-4 py-2 bg-blue-600 rounded button-size text-center">Edit</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </section>
+
+    <!-- Other Movies -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Resume</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
+        <!-- Movie Card -->
+        <div class="bg-card p-4 rounded-lg shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Blade_Runner_2049_poster.png?20171102092810" alt="Blade Runner 2049" class="mb-4 rounded-lg movie-img">
+          <h3 class="text-lg font-semibold">Blade Runner 2049</h3>
+          <div class="flex justify-between mt-4">
+            <a href="#" class="px-4 py-2 bg-green-600 rounded button-size text-center">Play Now</a>
+            <a href="#" class="px-4 py-2 bg-yellow-600 rounded button-size text-center">Watch</a>
+          </div>
+        </div>
+        <!-- Repeat similar blocks for other movies -->
+        <!-- Movie Card -->
+        <div class="bg-card p-4 rounded-lg shadow-lg">
+          <img src="https://m.media-amazon.com/images/M/MV5BMTYzODQzYjQtNTczNC00MzZhLTg1ZWYtZDUxYmQ3ZTY4NzA1XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg" alt="Wonder Woman" class="mb-4 rounded-lg movie-img">
+          <h3 class="text-lg font-semibold">Wonder Woman</h3>
+          <div class="flex justify-between mt-4">
+            <a href="#" class="px-4 py-2 bg-green-600 rounded button-size text-center">Play Now</a>
+            <a href="#" class="px-4 py-2 bg-yellow-600 rounded button-size text-center">Watch</a>
+          </div>
+        </div>
+        <!-- Movie Card -->
+        <div class="bg-card p-4 rounded-lg shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/en/3/32/Ghostbusters_2016_film_poster.png" alt="Ghostbusters" class="mb-4 rounded-lg movie-img">
+          <h3 class="text-lg font-semibold">Ghostbusters</h3>
+          <div class="flex justify-between mt-4">
+            <a href="#" class="px-4 py-2 bg-green-600 rounded button-size text-center">Play Now</a>
+            <a href="#" class="px-4 py-2 bg-yellow-600 rounded button-size text-center">Watch</a>
+          </div>
+        </div>
+        <!-- Movie Card -->
+        <div class="bg-card p-4 rounded-lg shadow-lg">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/23/Deadpool_%282016_poster%29.png/220px-Deadpool_%282016_poster%29.png" alt="Deadpool" class="mb-4 rounded-lg movie-img">
+          <h3 class="text-lg font-semibold">Deadpool</h3>
+          <div class="flex justify-between mt-4">
+            <a href="#" class="px-4 py-2 bg-green-600 rounded button-size text-center">Play Now</a>
+            <a href="#" class="px-4 py-2 bg-yellow-600 rounded button-size text-center">Watch</a>
+          </div>
+        </div>
+        <!-- Movie Card -->
+        <div class="bg-card p-4 rounded-lg shadow-lg">
+          <img src="https://m.media-amazon.com/images/M/MV5BMjE5NjI5ODYzN15BMl5BanBnXkFtZTcwMzE5NTU1Mw@@._V1_.jpg" alt="The Age of Stupid" class="mb-4 rounded-lg movie-img">
+          <h3 class="text-lg font-semibold">The Age of Stupid</h3>
+          <div class="flex justify-between mt-4">
+            <a href="#" class="px-4 py-2 bg-green-600 rounded button-size text-center">Play Now</a>
+            <a href="#" class="px-4 py-2 bg-yellow-600 rounded button-size text-center">Watch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
